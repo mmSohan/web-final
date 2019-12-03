@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post Form</title>
+</head>
+<body>
+    <h1>New Review</h1>
+    <input id="title" type="text" placeholder="REVIEWER NAME"><br>
+    <input id="content" type="number" placeholder="RATING(1 TO 5"> <br>
+    <textarea id="comment" type="text" placeholder="REVIEW COMMENT"></textarea id="comment">
+
+    <button type="submit" id="submitBtn">ADD</button>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script>
+
+        var article = {name: '', rating: '', comment:''}
+
+        $("#submitBtn").click(function(){
+            article.name = $("#title").val();
+            article.rating = $("#content").val();
+            article.comment = $("#comment").val();
+
+            $.ajax({
+            method: "POST",
+            url: '/new_article',
+            data: article
+            }).done(function(response){
+            console.log(response);
+            }).fail(function(response){
+            console.log(response);
+            })
+        })
+    </script>
+</body>
+</html>
